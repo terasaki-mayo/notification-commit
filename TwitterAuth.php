@@ -1,19 +1,15 @@
 <?php
+require_once __DIR__.'/vendor/autoload.php';
+use Dotenv\Dotenv;
+use Abraham\TwitterOAuth\TwitterOAuth;
 
-    //require
-    require_once __DIR__.'/vendor/autoload.php';
+$dotenv = new Dotenv(__DIR__);
+$dotenv->load(); //.envが無いとエラーになる
 
-    //for .env
-    use Dotenv\Dotenv;
+$consumerKey = getenv('CONSUMER_KEY');
+$consumerSecret = getenv('CONSUMER_SECRET');
+$accessToken = getenv('ACCESS_TOKEN');
+$accessTokenSecret = getenv('ACCESS_TOKEN_SECRET');
 
-    $dotenv = new Dotenv(__DIR__);
-    $dotenv->load(); //.envが無いとエラーになる
-
-
-    //利用 ///////////////////////////////////
-
-    //.env
-    //変数名が他の環境変数と被らないように注意
-    $name = getenv('TEST_NAME');
-    echo $name;
+echo $consumerKey;
 
