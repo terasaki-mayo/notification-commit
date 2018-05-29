@@ -1,0 +1,13 @@
+{
+    "name": "terasaki-mayo/notification-twitter",
+    "require": {
+        "abraham/twitteroauth": "^0.7.4",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "authors": [
+        {
+            "name": "maybou",
+            "email": "uminokaze521@gmail.com"
+        }
+    ]
+}
