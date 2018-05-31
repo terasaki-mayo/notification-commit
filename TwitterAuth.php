@@ -26,6 +26,3 @@ class TwitterAuth {
         var_dump($result);
     }
 }
-
-$twiter = new TwitterAuth();
-$twiter->Post("ねむみ");
