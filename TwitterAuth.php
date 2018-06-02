@@ -20,7 +20,7 @@ class TwitterAuth {
 
     }
 
-    public function Post($message){
+    public function PostToTwitter($message){
 
         $result = $this->connection->post("statuses/update", array("status" => $message));
         var_dump($result);
