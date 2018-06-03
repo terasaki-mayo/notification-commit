@@ -18,31 +18,20 @@ class GithubAuth {
         $query = <<<EOT
         query{
             viewer {
-              login
-              starredRepositories {
-                totalCount
-              }
-              repositories(first: 100) {
-                edges {
-                  node {
-                    name
-                    stargazers {
-                      totalCount
-                    }
-                    forks {
-                      totalCount
-                    }
-                    watchers {
-                      totalCount
-                    }
-                    issues(states:[OPEN]) {
-                      totalCount
-                    }
-                  }
+                login
+                starredRepositories {
+                    totalCount
                 }
-              }
+                repositories(first: 100) {
+                    edges {
+                        node {
+                            name
+                        }
+                    }
+                }
+              
             }
-          }
+        }
 EOT;
 
         $options = [
