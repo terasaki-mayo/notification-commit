@@ -16,16 +16,33 @@ class GithubAuth {
 
     public function GetInfo() {
         $query = <<<EOT
-        {
-            user(login: "Terasaki-Mayo") {
-                repositories(first: 10) {
-                    nodes {
-                        name
-                        url
+        query{
+            viewer {
+              login
+              starredRepositories {
+                totalCount
+              }
+              repositories(first: 100) {
+                edges {
+                  node {
+                    name
+                    stargazers {
+                      totalCount
                     }
+                    forks {
+                      totalCount
+                    }
+                    watchers {
+                      totalCount
+                    }
+                    issues(states:[OPEN]) {
+                      totalCount
+                    }
+                  }
                 }
+              }
             }
-        }
+          }
 EOT;
 
         $options = [
