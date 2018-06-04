@@ -11,7 +11,6 @@ class GithubAuth {
         $dotenv->load(); //.envが無いとエラーになる
 
         $this->accessToken = getenv('GITHUB_ACCESS_TOKEN');
-        var_dump(getenv('GITHUB_ACCESS_TOKEN'));
     }
 
     public function GetInfo() {
@@ -26,13 +25,7 @@ class GithubAuth {
                     edges {
                         node {
                             name
-                            languages(first: 2) {
-                                edges {
-                                    node {
-                                        name
-                                    }
-                                }
-                            }
+                            createdAt
                         }
                     }
                 }
