@@ -26,7 +26,13 @@ class GithubAuth {
                     edges {
                         node {
                             name
-                            languages
+                            languages {
+                                edges {
+                                    node {
+                                        name
+                                    }
+                                }
+                            }
                         }
                     }
                 }
