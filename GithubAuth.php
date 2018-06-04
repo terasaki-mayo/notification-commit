@@ -17,21 +17,41 @@ class GithubAuth {
         $query = <<<EOT
         query{
             viewer {
-                login
-                starredRepositories {
-                    totalCount
+              repositories(first: 100) {
+                edges {
+                  node {
+                    name
+                  }
                 }
-                repositories(first: 100) {
-                    edges {
-                        node {
-                            name
-                            createdAt
-                        }
-                    }
-                }
-              
+              }
             }
-        }
+            repository(name: "notification-commit" owner:"Terasaki-Mayo"){
+                ref(qualifiedName: "master") {
+                target {
+                  ... on Commit {
+                    id
+                    history(first: 10) {
+                      pageInfo {
+                        hasNextPage
+                      }
+                      edges {
+                        node {
+                          messageHeadline
+                          oid
+                          message
+                          author {
+                            name
+                            email
+                            date
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
 EOT;
 
         $options = [
