@@ -37,31 +37,20 @@ EOT;
         query{
             repository(name: "notification-commit" owner:"Terasaki-Mayo"){
                 ref(qualifiedName: "master") {
-                target {
-                  ... on Commit {
-                    id
-                    history(first: 10) {
-                      pageInfo {
-                        hasNextPage
-                      }
-                      edges {
-                        node {
-                          messageHeadline
-                          oid
-                          message
-                          author {
-                            name
-                            email
-                            date
-                          }
+                    target {
+                        ... on Commit {
+                            history(first: 10) {
+                                edges {
+                                    node {
+                                        committedDate
+                                    }
+                                }
+                            }
                         }
-                      }
                     }
-                  }
                 }
-              }
             }
-          }
+        }
 EOT;
 
         
