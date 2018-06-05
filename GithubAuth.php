@@ -13,7 +13,7 @@ class GithubAuth {
         $this->accessToken = getenv('GITHUB_ACCESS_TOKEN');
     }
 
-    public function GetInfo() {
+    public function GetRepositories(){
         $query = <<<EOT
         query{
             viewer {
@@ -25,6 +25,16 @@ class GithubAuth {
                 }
               }
             }
+          }
+EOT;
+        $contents = $this->postApi($query);
+        var_dump(json_decode($contents));
+    
+    }
+
+    public function GetInfo() {
+        $query = <<<EOT
+        query{
             repository(name: "notification-commit" owner:"Terasaki-Mayo"){
                 ref(qualifiedName: "master") {
                 target {
@@ -54,6 +64,13 @@ class GithubAuth {
           }
 EOT;
 
+        
+        $contents = $this->postApi($query);
+        var_dump(json_decode($contents));
+    
+    }
+
+    public function postApi($query){
         $options = [
             'http' => [
                 'method' => 'POST',
@@ -66,9 +83,7 @@ EOT;
             ],
         ];
         $context = stream_context_create($options);
-        $contents = file_get_contents('https://api.github.com/graphql', false, $context);
-        var_dump(json_decode($contents));
-    
+        return $contents = file_get_contents('https://api.github.com/graphql', false, $context);
     }
 }
 
