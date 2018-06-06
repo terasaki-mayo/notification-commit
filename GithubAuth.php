@@ -39,7 +39,7 @@ EOT;
                 ref(qualifiedName: "master") {
                     target {
                         ... on Commit {
-                            history(first: 10) {
+                            history(first: 100) {
                                 edges {
                                     node {
                                         committedDate
@@ -55,7 +55,7 @@ EOT;
 
         
         $contents = $this->postApi($query);
-        var_dump(json_decode($contents));
+        var_dump(json_decode($contents, true));
     
     }
 
