@@ -74,6 +74,10 @@ EOT;
         $context = stream_context_create($options);
         return $contents = file_get_contents('https://api.github.com/graphql', false, $context);
     }
+
+    public function calucCommits(){
+        
+    }
 }
 
 $github = new GithubAuth();
