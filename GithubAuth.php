@@ -5,12 +5,15 @@ use Dotenv\Dotenv;
 class GithubAuth {
 
     private $accessToken;
+    private $client;
 
     public function __construct() {
         $dotenv = new Dotenv(__DIR__);
         $dotenv->load(); //.envが無いとエラーになる
 
         $this->accessToken = getenv('GITHUB_ACCESS_TOKEN');
+
+        $this->client = new \Github\Client();
     }
 
     public function GetRepositories(){
@@ -27,7 +30,7 @@ class GithubAuth {
             }
           }
 EOT;
-        $contents = $this->postApi($query);
+        $contents = $this->client->api('graphql')->execute($query);
         return json_decode($contents, true);
     }
 
