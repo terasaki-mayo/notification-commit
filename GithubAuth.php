@@ -28,8 +28,7 @@ class GithubAuth {
           }
 EOT;
         $contents = $this->postApi($query);
-        var_dump(json_decode($contents));
-    
+        return json_decode($contents, true);
     }
 
     public function GetInfo() {
@@ -76,9 +75,11 @@ EOT;
     }
 
     public function calucCommits(){
-        
+        $repos = $this->GetRepositories();
+        var_dump($repos);
+
     }
 }
 
 $github = new GithubAuth();
-$github->GetInfo();
+$github->calucCommits();
