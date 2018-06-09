@@ -55,13 +55,18 @@ EOT;
         $context = stream_context_create($options);
         return $contents = file_get_contents('https://api.github.com/graphql', false, $context);
     }
+
+    public function countCommits($repos) {
+        foreach($repos as $repo){
+            $counts += $repo->defaultBranchRef->target->history->totalCount;
+        }
+        return $counts;
+    }
 }
 
 $github = new GithubAuth();
 $result = $github->GetCountsCommits();
 $repos = $result->data->viewer->repositories->nodes;
-foreach($repos as $repo){
-    $counts += $repo->defaultBranchRef->target->history->totalCount;
-}
+$counts = $github->countCommits($repos);
 var_dump($counts);
 
