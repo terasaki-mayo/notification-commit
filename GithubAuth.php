@@ -22,7 +22,6 @@ class GithubAuth {
             viewer {
                 repositories(first: 100) {
                     nodes {
-                        nameWithOwner
                         defaultBranchRef {
                             target {
                                 ...on Commit {
@@ -59,4 +58,7 @@ EOT;
 }
 
 $github = new GithubAuth();
-var_dump($github->GetCountsCommits());
+$result = $github->GetCountsCommits();
+$repos = $result->data->viewer->repositories->nodes;
+var_dump($repos);
+
