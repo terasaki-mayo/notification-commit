@@ -60,5 +60,8 @@ EOT;
 $github = new GithubAuth();
 $result = $github->GetCountsCommits();
 $repos = $result->data->viewer->repositories->nodes;
-var_dump($repos);
+foreach($repos as $repo){
+    $counts += $repo->defaultBranchRef->target->history->totalCount;
+}
+var_dump($counts);
 
