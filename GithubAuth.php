@@ -16,7 +16,7 @@ class GithubAuth {
         $this->client = new \Github\Client();
     }
 
-    public function GetRepositories(){
+    public function GetCountsCommits(){
         $query = <<<EOT
         query{
             viewer {
@@ -37,35 +37,8 @@ class GithubAuth {
             }
         }
 EOT;
-        $contents = $this->client->api('graphql')->execute($query);
-        return json_decode($contents, true);
-    }
-
-    public function GetInfo() {
-        $query = <<<EOT
-        query{
-            repository(name: "notification-commit" owner:"Terasaki-Mayo"){
-                ref(qualifiedName: "master") {
-                    target {
-                        ... on Commit {
-                            history(first: 10) {
-                                edges {
-                                    node {
-                                        committedDate
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-EOT;
-
-        
         $contents = $this->postApi($query);
-        var_dump(json_decode($contents, true));
-    
+        return json_decode($contents);
     }
 
     public function postApi($query){
@@ -83,13 +56,7 @@ EOT;
         $context = stream_context_create($options);
         return $contents = file_get_contents('https://api.github.com/graphql', false, $context);
     }
-
-    public function calucCommits(){
-        $repos = $this->GetRepositories();
-        var_dump($repos);
-
-    }
 }
 
 $github = new GithubAuth();
-$github->calucCommits();
+var_dump($github->GetCountsCommits());
