@@ -20,15 +20,22 @@ class GithubAuth {
         $query = <<<EOT
         query{
             viewer {
-              repositories(first: 100) {
-                edges {
-                  node {
-                    name
-                  }
+                repositories(first: 100) {
+                    nodes {
+                        nameWithOwner
+                        defaultBranchRef {
+                            target {
+                                ...on Commit {
+                                    history(since: "2017-01-01T00:00:00+00:00") {
+                                        totalCount
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-              }
             }
-          }
+        }
 EOT;
         $contents = $this->client->api('graphql')->execute($query);
         return json_decode($contents, true);
@@ -41,7 +48,7 @@ EOT;
                 ref(qualifiedName: "master") {
                     target {
                         ... on Commit {
-                            history(first: 100) {
+                            history(first: 10) {
                                 edges {
                                     node {
                                         committedDate
