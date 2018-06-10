@@ -15,6 +15,7 @@ class GithubAuth {
     }
 
     public function GetCountsCommits(){
+        $date = date("c",strtotime("-1 week"));
         $query = <<<EOT
         query{
             viewer {
@@ -23,7 +24,7 @@ class GithubAuth {
                         defaultBranchRef {
                             target {
                                 ...on Commit {
-                                    history(since: "2017-01-01T00:00:00+00:00") {
+                                    history(since: "{$date}") {
                                         totalCount
                                     }
                                 }
@@ -33,6 +34,7 @@ class GithubAuth {
                 }
             }
         }
+
 EOT;
         $contents = $this->postApi($query);
         return json_decode($contents);
