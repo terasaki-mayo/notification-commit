@@ -63,8 +63,3 @@ EOT;
     }
 }
 
-$github = new GithubAuth();
-$result = $github->GetCountsCommits();
-$counts = $github->countCommits($result);
-var_dump($counts);
-
