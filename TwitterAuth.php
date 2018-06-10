@@ -11,16 +11,16 @@ class TwitterAuth {
         $dotenv = new Dotenv(__DIR__);
         $dotenv->load(); //.envが無いとエラーになる
 
-        $consumerKey = getenv('CONSUMER_KEY');
-        $consumerSecret = getenv('CONSUMER_SECRET');
-        $accessToken = getenv('ACCESS_TOKEN');
-        $accessTokenSecret = getenv('ACCESS_TOKEN_SECRET');
+        $consumerKey = getenv('TWITTER_CONSUMER_KEY');
+        $consumerSecret = getenv('TWITTER_CONSUMER_SECRET');
+        $accessToken = getenv('TWITTER_ACCESS_TOKEN');
+        $accessTokenSecret = getenv('TWITTER_ACCESS_TOKEN_SECRET');
 
         $this->connection = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
 
     }
 
-    public function Post($message){
+    public function PostToTwitter($message){
 
         $result = $this->connection->post("statuses/update", array("status" => $message));
         var_dump($result);
