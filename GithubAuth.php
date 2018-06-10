@@ -9,11 +9,9 @@ class GithubAuth {
 
     public function __construct() {
         $dotenv = new Dotenv(__DIR__);
-        $dotenv->load(); //.envが無いとエラーになる
+        $dotenv->load();
 
         $this->accessToken = getenv('GITHUB_ACCESS_TOKEN');
-
-        $this->client = new \Github\Client();
     }
 
     public function GetCountsCommits(){
