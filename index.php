@@ -6,4 +6,6 @@ require_once "TwitterAuth.php";
 $github = new GithubAuth();
 $result = $github->GetCountsCommits();
 $counts = $github->countCommits($result);
-var_dump($counts);
+
+$twitter = new TwitterAuth();
+$twitter->PostToTwitter("今週は" . $counts . "回commitしました。" );
