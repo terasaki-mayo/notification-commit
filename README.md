@@ -39,17 +39,7 @@ Then install the library:
 ```
 $ composer install
 ```
-
   
-
-
-
-## Anything Else
-
-AnythingAnythingAnything
-AnythingAnythingAnything
-AnythingAnythingAnything
-
 ## Author
 
 [@Terasaki-Mayo](https://github.com/Terasaki-Mayo)
