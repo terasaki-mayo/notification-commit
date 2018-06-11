@@ -1,31 +1,28 @@
 # post counts commit to Twitter
 
-
-
 ## Description
 Count the number of commits of github in the past week.  
 Post counts to Twitter using Twitter API.
 
 
-## Features
-
-- Awesome function
-- Awesome UI
-- ...
-
-For more information, see `awesome-tool --help`.
-
 ## Requirement
 
-- Requirement
-- Requirement
-- Requirement
+- PHP5.6.30+
 
 ## Usage
 
 1. create  `.env`  file
-2. Usage
-3. Usage
+```
+TWITTER_CONSUMER_KEY=[XXX]
+TWITTER_CONSUMER_SECRET=[XXX]
+TWITTER_ACCESS_TOKEN=[XXX]
+TWITTER_ACCESS_TOKEN_SECRET=[XXX]
+GITHUB_ACCESS_TOKEN=[XXX]
+```
+2. Run
+```
+$ php index.php
+```
 
 ## Installation
 
@@ -55,8 +52,7 @@ AnythingAnythingAnything
 
 ## Author
 
-[@b4b4r07](https://twitter.com/b4b4r07)
+[@Terasaki-Mayo](https://github.com/Terasaki-Mayo)
 
 ## License
-
 [MIT](http://b4b4r07.mit-license.org)
